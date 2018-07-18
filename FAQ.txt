@@ -1,0 +1,1532 @@
+How to run valgrind 
+
+168  2018-05-10 11:35:16 tar -xjf valgrind-3.13.0.tar.bz2
+  169  2018-05-10 11:35:26 cd valgrind-3.13.0/
+  170  2018-05-10 11:35:27 ls
+  171  2018-05-10 11:35:37 ./configure --prefix=/home/v
+  172  2018-05-10 11:36:14 make
+  173  2018-05-10 11:48:01 make install
+  174  2018-05-10 11:48:11 cd /home/v
+  175  2018-05-10 11:48:11 ls
+  176  2018-05-10 11:48:17 cd bin/
+  177  2018-05-10 11:48:21 ./valgrind --help
+  178  2018-05-10 11:49:41 ./valgrind -v --log-file /tmp/val.log --leak-check=full /home/nici/Utils/linux_x86_64/debug/sample -t 1
+  179  2018-05-10 11:49:47 ./valgrind -v --log-file=/tmp/val.log --leak-check=full /home/nici/Utils/linux_x86_64/debug/sample -t 1
+  180  2018-05-10 11:50:47 less /tmp/val.log	
+  181  2018-05-10 11:52:55 ./valgrind -v --log-file=/tmp/val.log --leak-check=full /home/nici/Utils/linux_x86_64/sample -t 1
+  182  2018-05-10 11:54:08 less /tmp/val.log
+
+
+
+
+#journalctl -aef
+
+
+
+
+ndsindex list -h 164.99.179.179 -p 636 -e /etc/opt/novell/certs/SSCert.der -D cn=admin,o=novell -w n -s CN=OES2018-179,O=novell
+
+
+ps -p <pid> -o %cpu,%mem,cmd
+
+
+How to find content of jar file on Linux 
+unzip -p /opt/novell/eDirectory/lib64/jclient.jar  META-INF/MANIFEST.MF (this is to find out the version of Java/build informaiton about jar)
+
+
+ndsconfig new -t asdftree -n dc=server.dc=server.dc=system -a cn=admin.dc=sa.dc=system -b 1524 -S nts212 -D /root/edir/asdftree/server -d /root/edir/asdftree/server/data/dib -L 1389 -l 1636 -o 8029 -O 8031 --config-file /home/inst1/conf/nds.conf
+
+
+openssl ciphers -V DEFAULT_SUSE
+
+Installing Python from source 
+https://passingcuriosity.com/2015/installing-python-from-source/
+
+
+
+
+ Test the new certificate
+- If on eDirectory 8.8.8:
+/opt/novell/eDirectory/bin/ldapsearch -x -h x.x.x.x -p 636 -e /var/opt/novell/eDirectory/data/SSCert.der -D cn=admin,o=novell -w novell -b o=novell -s base -LLL GUID
+- If on eDirectory 9.0:
+LDAPTLS_CACERT=/var/opt/novell/eDirectory/data/SSCert.pem ldapsearch -H ldaps://x.x.x.x:636 -D cn=admin,o=novell -w novell -b o=novell cn=admin
+
+
+
+
+
+
+For more debug log for tomcat server while installing the iManager export LAX_DEBUG=true
+
+
+Assuming your certificates are in PEM format, you can do:
+
+openssl verify cert.pem
+
+If your "ca-bundle" is a file containing additional intermediate certificates in PEM format:
+
+openssl verify -untrusted ca-bundle cert.pem
+
+If your openssl isn't set up to automatically use an installed set of root certificates (e.g. in /etc/ssl/certs), then you can use -CApath or -CAfile to specify the CA.
+
+
+
+
+My IPS : 156-170
+DNS IP : 164.99.201.201
+domain: labs.blr.novell.com
+Gateway: 164.99.179.254
+mask:255.255.254.0
+
+6) Practice, practice and practice your interview responses and also what you will say during various other meetings.
+
+systemctl enable sshd.service
+systemctl start sshd.service
+
+CEF events: 
+To get Many security events like "CHANE_PASSWORD",LOGIN_CONFIG_CHANGE" we have to run the below nmas sample program.
+
+./nmas_method_mgmt_func 164.99.179.194 636 SSCert.der cn=admin,ou=novell,ou=co,o=in n CN=raghu,OU=novell,OU=co,O=in
+
+ldapconfig set "Require TLS for Simple Binds with Password=no" -a raghuadmin.raghuadmin.novell.co.in -w n -p 164.99.179.160
+
+To Get the "IMPERSONATE" user.
+
+ldapsearch -x -h 164.99.179.194 -p 389 -D cn=admin,ou=novell,ou=co,o=in -w n -e '!authzid=dn:cn=raghu,ou=novell,ou=co,o=in' -b o=in -s one
+
+Nov 03 15:56:13 NetIQ CEF:0|NetIQ|eDirectory|9.1|CEF0B0231|IMPERSONATE|1|dvc=164.99.179.194 dvchost=SLES12SP2-194 rt=Nov 03 2017 15:56:13 dtz=IST sourceServiceName=CN\=SLES12SP2-194,OU\=server,OU\=co,O\=in sproc=eDirectory#DS src=164.99.179.194 spt=28842 suser=CN\=admin,OU\=novell,OU\=co,O\=in duser=CN\=raghu,OU\=novell,OU\=co,O\=in cs3Label=Tree Name cs3=TEST-CEF-NOV3 cs4Label=Correlation ID cs4=eDirectory#6# cs6=CN\=SLES12SP2-194,OU\=server,OU\=co,O\=in flexString2Label=SubEvent flexString2=DSE_IMPERSONATE flexNumber2Label=Grouping flexNumber2=369 cat=Security reason=0 outcome=Success
+
+
+
+
+
+openssl ciphers -v 'ALL:!ADH:@STRENGTH'
+openssl ciphers -v 'ECDHE:@STRENGTH'
+
+How to start and stop the NDSD server on Windows 
+for /l %x in (1,1,100) do time /T && net stop "NDS Server0" && net start "NDS Server0"
+
+stopping the ndsd server on Windows : net stop "NDS Server0"
+
+
+
+Stopping Firewall in RHEL7.3
+
+systemctl status firewalld
+service firewalld stop
+
+
+
+To enable debug for tomcat server 
+set "CATALINA_OPTS="$CATALINA_OPTS -Djavax.net.debug=all" in /var/opt/novell/tomcat8/conf/tomcat8.conf 
+
+
+
+To disable tls1.0 on sentinel server	
+
+3. open file /opt/novell/sentinel/jdk/jre/lib/security/java.security and locate jdk.tls.disabledAlgorithms= line and add TLSv1 at the end of line
+
+jdk.tls.disabledAlgorithms=SSLv3, RC4, MD5withRSA, DH keySize < 768, \
+    EC keySize < 224, TLSv1
+
+
+
+LDAPTLS_CACERT=/var/opt/novell/eDirectory/data/SSCert.pem ldapsearch -H ldaps://192.168.211.50:636 -D cn=admin,o=emg -w novell -b o=emg cn=admin
+
+
+Stunnel configure : http://homepage.smc.edu/morgan_david/linadmin/labs/rsyslog-stunnel.htm
+
+
+/opt/novell/jdk1.8.0_112/jre/bin/keytool -list -v -keystore .keystore
+
+
+Histroy of edir issue : https://www.novell.com/support/kb/doc.php?id=3426981
+
+XDAS changes in 903 https://www.novell.com/support/kb/doc.php?id=7018768
+
+
+http://dev.portal.attachmate.com/securityinfo/Secure%20Development%20Presentations/Forms/Secue%20Development%20Presentations.aspx?RootFolder=%2fsecurityinfo%2fSecure%20Development%20Presentations%2fApril%202016%20UK%20Security%20Academy%2fCryptography&FolderCTID=&View=%7b99354B08%2d781A%2d4091%2d9B8E%2dF40A36C6CFDE%7d  --> Security material.
+
+for default config : /etc/opt/novell/eDirectory/conf/env
+
+
+
+
+How to get "" event.
+
+/usr/bin/ldapcompare -x -D "cn=admin,o=novell" -wn -h 164.99.179.162 "cn=raghu,o=novell" userpassword:n
+Mar 22 12:39:41 eDirectory : INFO {"Source" : "eDirectory#DS","Observer" : {"Account" : {"Domain" : "TEST-PPP","Name" : "CN=SLES12-SP2-162,O=novell"},"Entity" : {"SysAddr" : "164.99.179.162","SysName" : "SLES12-SP2-162"}},"Initiator" : {"Account" : {"Name" : "CN=raghu,O=novell","Id" : "32856"},"Entity" : {"SysAddr" : "164.99.179.162:0"}},"Target" : {"Data" : {"Name" : "CN=raghu,O=novell","SubTarget" : "CN=SLES12-SP2-162,O=novell","Version" : "2"}},"Action" : {"Event" : {"Id" : "0.0.2.4","Name" : "AUTHENTICATE_SESSION","CorrelationID" : "eDirectory#4294967295#","SubEvent" : "DSE_VERIFY_PASS"},"Time" : {"Offset" : 1490166581},"Log" : {"Severity" : 7},"Outcome" : "0","ExtendedOutcome" : "0"}}
+
+
+
+
+
+Debuging commands 
+
+ 2017-03-17 14:57:49 gstack `pgrep ndsdtrace`
+   79  2017-03-17 14:58:04 gstack `pgrep ndstrace`
+   80  2017-03-17 14:58:14 gstack `pgrep ndstrace` >> trace
+   81  2017-03-17 14:58:28 gstack `pgrep ndsd` >> ndsd
+   82  2017-03-17 14:58:34 vi ndsd
+   83  2017-03-17 14:59:59 gcore `pgrep ndsd`
+   84  2017-03-17 15:00:15 novell-getcore -b core.3982
+
+
+
+
+[rraghu1.IND-Rraghu1] ? ssh root@164.99.88.121
+Warning: Permanently added '164.99.88.121' (RSA) to the list of known hosts.
+Password:
+Last login: Fri Mar 17 16:21:11 2017 from 164.99.136.168
+
+daya-test:/home/daya/scripting
+
+
+
+
+
+
+
+
+
+
+
+To check the rpm installed and their version 
+
+for i in `find /home/302/iManager/installs/ -name "*.rpm"`; do j=`rpm -qp --qf "%{NAME}\n" $i`;echo $j;rpm -qp --qf "%{NAME} %{VERSION} %{BUILDTIME:date}\n" $i; rpm -q --qf "%{NAME} %{VERSION} %{BUILDTIME:date}\n" $j; done
+
+strings lc5659f5c80584be40c1a6eb425a811bec | openssl x509 -text -noout
+
+
+
+how to check the signed build of PA 
+
+SLES11-SP4-163:/home/pa/902_HF2/linux # rpm -K novell-AUDTplatformagent-2.0.2-80.x86_64.rpm
+novell-AUDTplatformagent-2.0.2-80.x86_64.rpm: RSA sha1 (MD5) (PGP) md5 NOT OK (MISSING KEYS: PGP#096aa12b)
+
+SLES11-SP4-163:/home/pa/902_HF2/linux # wget http://builder.provo.novell.com/artifacts/signing/platformagent/netiq-provo-build-key.public
+
+SLES11-SP4-163:/home/pa/902_HF2/linux # rpm --import netiq-provo-build-key.public
+SLES11-SP4-163:/home/pa/902_HF2/linux # rpm -K novell-AUDTplatformagent-2.0.2-80.x86_64.rpm
+novell-AUDTplatformagent-2.0.2-80.x86_64.rpm: rsa sha1 (md5) pgp md5 OK
+
+Sentinel builds location : ftp://archive.esecurity.net/sentinel/sentinel/
+
+
+
+how to check the weather dll is signed or not 
+https://technet.microsoft.com/en-us/sysinternals/bb897441.aspx 
+command to use sigcheck.exe -a -u -e 
+
+
+
+You can use following commands to extract public/private key from a PKCS#12 container:
+
+    Private key
+
+    openssl pkcs12 -in yourP12File.pfx -nocerts -out privateKey.pem -nodes
+
+    Certificates:
+
+    openssl pkcs12 -in yourP12File.pfx -clcerts -nokeys -out publicCert.pem
+
+openssl s_client -showcerts -connect 164.99.179.193:8030
+
+
+
+
+
+
+
+XDAS link about wrong mapping : https://bugzilla.novell.com/show_bug.cgi?id=969318#c3 
+
+/opt/novell/eDirectory/lib64/nds-modules/embox/jre/bin/keytool -list -v  -keystore keystore -storepass novell
+
+
+
+grep -rl "BEGIN RSA PRIVATE KEY" /opt/novell
+
+rpm -qlp novell-AUDTplatformagent-2.0.2-79.x86_64.rpm to list the files.
+/etc/logevent.conf
+/opt/novell/naudit
+/opt/novell/naudit/java
+/opt/novell/naudit/java/nauditpaconfig.jar
+/opt/novell/naudit/java/pa
+/opt/novell/naudit/java/pa/NAuditPA.jar
+/opt/novell/naudit/lcache
+/usr/lib64/liblogevent.so
+
+
+
+
+/opt/novell/eDirectory/lib64/nds-modules/embox/jre/bin/keytool -importcert -file 164-rr.pem -keystore keystore -alias "164-CA" --> to add CA 
+Get pem certificate by converting the der certificate or openssl command showcertificate and copy the output to text file with .pem 
+
+LDAP secure using openldap command 
+
+LDAPTLS_CACERT=/etc/opt/novell/certs/SSCert.pem ldapsearch -H ldaps://164.99.179.162:636 -D cn=admin,ou=novell,dc=co,c=in -w novell cn=admin
+
+
+
+Cool solutuion for PA caching https://www.netiq.com/communities/cool-solutions/cached-events-not-getting-uploaded-sentinel-server/
+
+
+
+To list the class numbers in given jar file unzip -l /home/perin/.m2/repository/com/novell/naudit/nauditpa/2011.1r2/nauditpa-2011.1r2.jar | wc -l
+
+Simple passwrod method : Set simple password in NMAS plugin of a user.
+
+ldapsearch -h 164.99.179.164 -D cn=spuser,o=novell -w Raghu_123 cn=spuser  -LLL
+
+DIGEST-MD5
+ldapsearch -h 164.99.179.164 -U dn:cn=spuser,o=novell -w Raghu_123 cn=spuser  -LLL -Y DIGEST-MD5
+SASL/DIGEST-MD5 authentication started
+SASL username: dn:cn=spuser,o=novell
+
+
+CERTMutul 
+Manjunath K
+openssl pkcs12 -in Downloads/cert.pfx -out /tmp/usercert.pem -nokeys -clcerts -passin pass:novell
+
+openssl pkcs12 -in Downloads/cert.pfx -out /tmp/cacert.pem -nokeys -cacerts -passin pass:novell
+MAC verified OK
+openssl pkcs12 -in Downloads/cert.pfx -out /tmp/userkey.pem -nodes -nocerts -passin pass:novell
+MAC verified OK
+manjukj@blr-kmanjunath:~> LDAPTLS_CACERT=/tmp/cacert.pem LDAPTLS_CERT=/tmp/usercert.pem LDAPTLS_KEY=/tmp/userkey.pem ldapsearch -x -H ldaps://164.99.179.164 -b "" -s base -LLL dn
+dn:
+
+manjukj@blr-kmanjunath:~> LDAPTLS_CACERT=/tmp/cacert.pem LDAPTLS_CERT=/tmp/usercert.pem LDAPTLS_KEY=/tmp/userkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.164 -b "" -s base -LLL dn
+
+
+
+
+
+
+
+https://www.netiq.com/documentation/edirectory-9/edir_admin/data/b1jjq4uf.html --> mapping of DS and XDAS events.
+
+164.99.91.43 --> Novell client
+
+
+tcpdump commonds 
+
+tcpdump -i eth0 -s0 host 164.99.179.164  --> Basic filter
+
+tcpdump -i any -w pop.pcap -s 0 "host 164.99.179.133" & --> with host IP
+
+
+
+
+How to updgrade openSSL to PA 
+http://wiki.esecurity.net:8090/display/IS/OpenSSL+upgrade+-+How+To
+
+
+Configuring the non-root tree 
+
+By root,
+
+eDir # rpm -ivh nici-2.7.7-0.02.i586.rpm
+
+eDir # rpm -ivh nici64-2.7.7-0.02.x86_64.rpm
+
+/var/opt/novell/nici # ./set_server_mode
+
+/var/opt/novell/nici # ./set_server_mode64
+
+By non-root,
+
+export LD_LIBRARY_PATH=/home/user1/eDirectory/opt/novell/eDirectory/lib64:/home/user1/eDirectory/opt/novell/eDirectory/lib64/ndsmodules:/home/user1/eDirectory/opt/novell/lib64:$LD_LIBRARY_PATH
+
+export PATH=/home/user1/eDirectory/opt/novell/eDirectory/bin:/home/user1/eDirectory/opt/novell/eDirectory/sbin:/opt/novell/eDirectory/bin:$PATH
+
+export MANPATH=/home/user1/eDirectory/opt/novell/man:/home/user1/eDirectory/opt/novell/eDirectory/man:$MANPATH
+
+export TEXTDOMAINDIR=/home/user1/eDirectory/opt/novell/eDirectory/share/locale/:$TEXTDOMAINDIR
+
+. /home/user1/eDirectory/opt/novell/eDirectory/bin/ndspath
+
+For sles to configure user services use - systemctl start user@<uid>.service ( we can find user id by command "id username")
+
+
+	
+--no-check-certificate option to WGET with checking certificate.
+
+
+non-root NAudit configurtion 
+
+Run install.sh script to install the PA 
+
+eDir instumentation rpm instalation
+rpm2cpio novell-AUDTedirinst-8.8.8.4-47.x86_64.rpm | cpio -div
+cp -r ./opt/novell/eDirectory/lib64/* /home/raghu/eDirectory/opt/novell/eDirectory/lib64/
+
+
+
+refer link : https://www.netiq.com/documentation/edir88/pdfdoc/edirin88/edirin88.pdf - 2.6.3
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+lsend.exe tool for vlidating the PA . It loads PA agent and sends dummy event.
+command to use lsend.exe -c:"test" 
+
+
+eDirectory Collector:
+https://www.netiq.com/support/sentinel/plugins/prod/collectors/NetIQ_eDirectory_2011.1r6.clz.zip 
+https://www.netiq.com/support/sentinel/plugins/prod/collectors/NetIQ_eDirectory_2011.1r6.html
+NMAS Collector:
+https://www.netiq.com/support/sentinel/plugins/prod/collectors/NetIQ_Modular-Authentication-Services_2011.1r3.clz.zip
+https://www.netiq.com/support/sentinel/plugins/prod/collectors/NetIQ_Modular-Authentication-Services_2011.1r3.html 
+
+
+
+
+ NDSD_TRY_NMASLOGIN_FIRST=true
+ export NDSD_TRY_NMASLOGIN_FIRST=true
+
+ndslogin and imanager uses NMAS by default.
+ldap and imonitor is goes thru NMAS only if NDSD_TRY_NMASLOGIN_FIRST is set to true.
+
+
+
+
+
+
+Kill lcache after upgrading the PA to latest.
+
+STDIR-VM:/home/901/eDirectory/setup # ps -ef | grep lcache
+root      7866     1  0 11:20 ?        00:00:00 lcache -dir:/var/opt/novell/naudit/cache -port:1288 -slsport:1289 -int:30 -c
+STDIR-VM:/home/901/eDirectory/setup # kill -15 7866
+STDIR-VM:/home/901/eDirectory/setup #  ndstrace -c "load auditds"
+
+####################### OpenSSL ############################### 
+
+
+How to use openssl s_server as the logging server for getting events.
+
+1)Configure edirecoty and create server certificate for the server[create with IP address and hostname] where u are running the openssl -s_server.
+2)Download the PFX certificate with password.
+3) Create CA file which should be used for XDAS, like needs to mention in the xdasproperties file.
+openssl pkcs12 -in /tmp/cert.pfx -out /tmp/cacert.pem -nokeys -cacerts -passin pass:novell
+
+4)Create a certificates which can used in the server where s_server is run 
+
+	
+openssl pkcs12 -in /tmp/cert.pfx -out /tmp/key.pem -nodes -nocerts -passin pass:novell
+openssl pkcs12 -in /home/cert.pfx -out /tmp/cert.pem -nokeys -clcerts -passin pass:novell
+
+
+openssl s_server -accept 1443 -cert /tmp/cert.pem -key /tmp/key.pem -ssl3(ssl2/tls1.1/tls1.2)
+
+5) Check that events are recived in the s_server machine.
+
+6)Some obervation after the testing. 
+  a)sslv2 is disabled from eDirectoy 888 Patch 6. b) sslv3 is disabled in 9.0/9.0.1 FIPS mode. c) SSLv3 is enabled in 9.0/9.0.1 non-fips mode . 
+
+Some more commands 
+
+openssl s_server -state -msg -accept 1443 -cert /home/cert.pem -key /home/key.pem -verify /home/cacert-19 [verify is used to check the client certificate]
+
+############# Testing the openssl with s_server and s_client ############
+
+First create two certificates which can used for s_server command 
+
+openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes 
+
+Start the openSSL s_server with this certifcates
+openssl s_server -key key.pem -cert cert.pem -accept 44330 -www (should try TCP)
+
+we can acess this s_server by browser https://localhost:44330 or 
+
+Using s_client we can use 
+
+openssl s_client -connect localhost:44330
+
+
+
+
+
+
+
+
+
+https://testssl.sh/ --> good tool to test the cipers supported.
+export OPENSSL=/usr/local/ssl/bin/openssl
+ 
+ ssh root@164.99.163.26  --> NMAS sample programs
+ 
+
+
+
+
+On sles12 & RHEL 7.x novell-scrub does not remove the service from system, which is causing the failure while configuring a new instance. 
+
+In case if you have used scrub in your system use below commands to remove service:
+1) systemctl -t service --all | grep ndsd
+Output : 
+ndsd.service      loaded    failed   failed  LSB: NetIQ eDirectory Server
+ndsdtmpl-etc-opt-novell-eDirectory-conf-nds.conf@-etc-opt-novell-eDirectory-conf-env.service loaded    failed   failed  eDirectory service for /etc/opt/novell/eDirectory/conf/env
+
+Using disable and stop command we can stop the service
+
+2) systemctl disable ndsdtmpl-etc-opt-novell-eDirectory-conf-nds.conf@-etc-opt-novell-eDirectory-conf-env.service 
+3) systemctl stop ndsdtmpl-etc-opt-novell-eDirectory-conf-nds.conf@-etc-opt-novell-eDirectory-conf-env.service 
+
+In RHEL 7.1 disable/stop commands are not working so we can use following command.
+
+systemctl reset-failed ndsdtmpl-etc-opt-novell-eDirectory-conf-nds.conf@-etc-opt-novell-eDirectory-conf-env.service
+
+
+
+sudo $JAVA_HOME/bin/keytool -import -alias "somealias" -file certfile.txt -keystore /Library/Java/Home/lib/security/cacerts
+
+jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl - Jmeter command line.
+
+
+
+
+
+LESSON FOR the Day --> LEAVE the LAZINESS RAGHU ... Lets screw it and just do it !!
+
+How i learned JMETER connecting securely . U have everthing my dear Raghu . Just need to try it !
+
+
+
+
+
+
+Success is the ability to go from one failure to another with no loss of enthusiasm - Winston Churchill
+
+
+############# How to connect to the sentinal server using Syslog-SSL connection   ########### 
+
+1)Create server certificate for sentinal server using PKI-plugin by logging in to the eDirectory tree which u want to monitor events
+	a) Go to "Server Certificates " and create new certificate by adding IP address of sentinal server and subject name with sentinel server hostname.
+	   example "O=TEST-COL.CN=praveen-133.blr.novell.com"   
+2)Export the sentinel server certificate to PFX format.
+3)Convert the PFX certificate to keystore format using following command 
+
+/opt/novell/jdk1.8.0_25/bin/keytool -importkeystore -srckeystore /home/cert.pfx -srcstoretype pkcs12 -srcstorepass novell -destkeystore /home/keystore -deststoretype JKS -deststorepass novell -destkeypass novell -destalias sys-con -srcalias sent-133 (nick name of certificate)
+
+We can cross verify keystore file generation by below command.
+
+/opt/novell/jdk1.8.0_25/bin/keytool -list -keystore /home/keystore -storepass novell -v
+
+4) Export above "keystore" file while create SSL connection in "SSL Settings" --> "Server Key Pair Settings" --> "Import"
+
+5) Edit the "xdasconfig.properties" 
+
+# Defines location of Syslog server.
+log4j.appender.S.Host=164.99.179.133
+log4j.appender.S.Port=1443
+
+# Specify protocol to be used (UDP/TCP/SSL)
+log4j.appender.S.Protocol=SSL
+
+# Specify SSL certificate file for SSL connection.
+# File path should be given with double backslash.
+log4j.appender.S.SSLCertFile=/var/opt/novell/eDirectory/data/SSCert.pem  --> Tree certificate of the tree where we generated the Certificate for Sentinel
+
+Load xdasauditds and Check in ndsd.log for messages for success connetion establisbent.
+ 
+
+#####################################################################################################################################################################################################
+
+ps -C ndsd -o vsz,rss,pcpu,cmd --> to check cpu usage.
+
+do[ 1 ];do ndslogin admin.raghu.tmk.co.in -p novell1;sleep 1 ; ps -C ndsd -o vsz,rss,pcpu,cmd;done
+ 
+
+
+Parsing A CRL With OpenSSL : openssl crl -inform DER -text -noout -in mycrl.crl
+
+ndsconfig new -t REGREST -n ou=raghu.o=tmk.dc=co.c=in -a admin.raghu.tmk.co.in
+
+
+
+
+##################### Curl command ############
+
+curl -k -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data | w3m -dump -T text/html
+curl -k -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data
+curl --crlfile one_crl.pem -k -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data
+curl --crlfile one_crl.pem -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data
+curl --crlfile one_crl.pem --cacert /var/opt/novell/eDirectory/data/SSCert.pem -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data
+curl --cacert /var/opt/novell/eDirectory/data/SSCert.pem -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data
+curl --crlfile one_crl.pem --cacert /var/opt/novell/eDirectory/data/SSCert.pem -u admin.novell:n https://164.99.179.192:8030/nds/agent/info/data
+
+
+
+
+
+
+openssl s_client -showcerts -connect 164.99.179.193:8030
+
+LDAP Secure search : LDAPTLS_CACERT=/var/opt/novell/eDirectory/data/SSCert.pem ldapsearch -x -H ldaps://164.99.179.192:636 -D cn=raghu,o=raghu -w raghu -b o=raghu cn=raghu
+
+
+Tools for packet cpaturing 
+
+/bin/netcat -nvz 192.168.1.1 524
+/usr/sbin/tcpdump -v -v -i eth1 -n port 524 and host 192.168.1.1
+
+
+
+
+SDIDiag --> http://download.novell.com/Download?buildid=P0UMP7M5YgI~   
+/opt/novell/sdidiag/bin64/sdidiag64
+
+https://www.novell.com/support/kb/doc.php?id=3455150
+https://www.novell.com/support/kb/doc.php?id=3092072
+
+
+SDIDIAG> LS -M W1
+No key servers found.
+SDIDIAG> LS -M W0
+.stdir-vm-153.novell.TEST0009.
+SDIDIAG> AS -M W1 -S .stdir-vm-153.novell.TEST0009.
+Add [  OK  ]
+SDIDIAG> LS -M W1
+.stdir-vm-153.novell.TEST0009.
+SDIDIAG> LK -M W1
+Displaying keys in domain W1, object .W1.KAP.Security.TEST0009.
+Displaying keys on .stdir-vm-153.novell.TEST0009.
+Server : .stdir-vm-153.novell.TEST0009.
+
+
+https://www.novell.com/support/kb/doc.php?id=3840110
+
+
+Password Utility(diagpwd) --> http://blr-builder.labs.blr.novell.com/artifacts/NMAS_LDAPExt/idc_nmas%23rosalind_ssp-900-beta3/
+
+./diagpwd 164.99.179.192 636 /home/SSCert_192.der o=novell base cn=admin,o=novell n
+./diagpwd 164.99.179.192 636 /home/SSCert_192.der o=novell base cn=admin,o=novell n
+./diagpwd 164.99.179.164 636 /home/SSCert_164.der o=novell base cn=admin,o=novell n
+./diagpwd 164.99.179.192 636 /home/SSECCert_192.der o=novell one cn=admin,o=novell n
+./diagpwd 164.99.179.192 636 /home/SSECCert_192.der o=novell sub cn=admin,o=novell n
+https://bugzilla.novell.com/show_bug.cgi?id=936568
+
+Password Utility(rmupwd) --> http://download.novell.com/Download?buildid=LpFHSehMEGM~
+
+
+
+openssl x509 -fingerprint -sha256/sha1/md5 -noout -in SSCert.pem
+
+openssl x509 -inform der -in certificate.cer -out certificate.pem
+
+
+
+Howto: Make Your Own Cert With OpenSSL --> Good link http://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/
+
+First we generate a 4096-bit long RSA key for our root CA and store it in file ca.key:
+
+openssl genrsa -out ca.key 4096
+
+
+Next, we create our self-signed root CA certificate ca.crt; you’ll need to provide an identity for your root CA:
+
+openssl req -new -x509 -days 1826 -key ca.key -out ca.crt
+
+Next step: create our subordinate CA that will be used for the actual signing. First, generate the key:
+
+openssl genrsa -out ia.key 4096
+
+Then, request a certificate for this subordinate CA:
+
+openssl req -new -key ia.key -out ia.csr
+
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+
+Next step: process the request for the subordinate CA certificate and get it signed by the root CA.
+
+
+openssl x509 -req -days 730 -in ia.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out ia.crt
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Hines TID for Configuring eDirectory to mint certificates with a SHA-2 signature 
+https://www.novell.com/support/kb/doc.php?id=7016877
+
+The certificate file laid down on the filesystem can be verified with the following command:
+"openssl x509 -in /var/opt/novell/eDirectory/data/SSCert.der -inform der -text -noout"  
+
+
+
+
+
+===============================================================================
+
+Instructions for generating public key, checksum file, digital signature --> 
+
+Bug 921725 - NTLS should verify OpenSSL crypto library checksum
+
+===============================================================================
+
+1) Command for generating the EC key pair
+        openssl ecparam -genkey -name secp384r1 -noout -out myprivatekey.pem
+        openssl ec -in myprivatekey.pem -pubout -out mypubkey.pem
+
+
+2) Command for creating the checksum file and signing it
+        openssl dgst -sha256  libcrypto.so.1.0.0 libssl.so.1.0.0 libeay32.dll ssleay32.dll > openssl_checksum.txt
+        openssl dgst -hex -sha384 -sign ./myprivatekey.pem -out openssl_checksum.txt.asc openssl_checksum.txt
+
+
+3) Command for generating the header file from EC public key
+        myvar="$(openssl ec -pubin -outform DER -in mypubkey.pem 2>/dev/null | xxd -i | tr -d '\n')"
+        cat public_key.cpp.in | sed "s/@public_key@/$myvar/g" > src/public_key.cpp
+
+
+
+/etc/opt/novell/eDirectory/conf/hosts.nds --> novell.TTT.  164.99.179.194
+ldapdelete -h 164.99.179.194 -D cn=admin,o=novell -w n -r cn=security
+
+ndssch -h 164.99.179.193 -t wsss -F /home/test.log netadmin.netiq ldap.sch
+
+ssh edir@cores.lab.novell.com/edir --> good info on the tools.
+
+
+
+
+
+iMan --> /var/opt/novell/iManager/nps/WEB-INF/configiman.properties edit this file with adding "AllUsers=true"
+
+
+
+
+online courses links 
+
+http://www.ft.com/intl/cms/s/2/039fb95a-161c-11e3-a57d-00144feabdc0.html#axzz3bDReiOpr --> List of online courses MOCC
+
+
+
+
+To stop FireWall in RHEL --> systemctl stop firewalld
+
+
+
+
+
+
+
+
+
+
+LIBDUMA settings for the ndsd --> It will check the  DUMA is an open-source library (under GNU General Public License) to detect buffer overruns and under-runs in C and C++ programs.
+
+
+sysctl -w vm.max_map_count=7000000
+        if [ "$MALLOC_CHECK_" = "" ] && [ -f /usr/$libfldr/libtcmalloc_minimal.so.0 ]; then
+                if [ -f /etc/novell-release ]; then
+                        LD_PRELOAD="/usr/lib/libduma.so.0" startproc $sbindir/ndsd
+                else
+                        LD_BIND_NOW=1 LD_PRELOAD="/usr/lib/libduma.so.0" $sbindir/ndsd
+                fi
+        else
+               LD_PRELOAD="/usr/lib/libduma.so.0" $sbindir/ndsd
+
+
+
+
+
+
+
+Here is the full CVE alert. http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-7169  
+
+
+SuiteB settings for LDAP and HTTP
+
+HTTP change where the Suite B switch will be added to “http-server.bind-restrictions”. 
+The new set of bind restrictions for http server would be as below
+BIND_RESTRICTION_LEVEL_EXPORT 0
+BIND_RESTRICTION_LEVEL_LOW 1
+BIND_RESTRICTION_LEVEL_MEDIUM 2
+BIND_RESTRICTION_LEVEL_HIGH 3
+BIND_RESTRICTION_LEVEL_SUITEB128 4
+BIND_RESTRICTION_LEVEL_SUITEB128ONLY 5
+BIND_RESTRICTION_LEVEL_SUITEB192 6
+
+For LDAP 
+
+CIPHER_LOW 0x10
+CIPHER_MEDIUM 0x20
+CIPHER_HIGH 0x30
+CIPHER_SUITEB128 0x40
+CIPHER_SUITEB128ONLY 0x50
+CIPHER_SUITEB192 0x60
+
+
+
+Creating the user certificate and using it for the LDAP.
+
+
+tar -cvf log.tar.gz /var/opt/novell/eDirectory/log/
+
+
+manju sample code source code location.--> mount 164.99.179.105:/data /data
+dclinet test program /data/test/dclient_test
+
+one more machine details 164.99.179.122
+/root/test
+
+LD_LIBRARY_PATH=edir_sdk/components/nmas_ldap_sdk/lib/Linux/x86_64/release:/opt/novell/eDirectory/lib64/ ./nmas_get_simple_passwd
+
+
+./export_ca_cert 164.99.179.192 524 YYY admin.novell n "YYY CA" PKI_CA_KEY_AND_CERTS_EC ec.pfx
+
+
+
+
+
+################################ OPENSSL COMMANDS ###################################33
+
+To manually compile OpenSSL, do as follows:
+
+$ cd /usr/src
+
+$ wget https://www.openssl.org/source/openssl-1.0.1g.tar.gz -O openssl-1.0.1g.tar.gz
+
+$ tar -zxf openssl-1.0.1g.tar.gz
+
+$ cd openssl-1.0.1g
+
+$ ./config
+
+$ make
+
+$ make test
+
+$ make install
+
+$ openssl version
+
+If it shows the old version, do the steps below.
+
+$ mv /usr/bin/openssl /root/
+
+$ ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
+openssl version
+OpenSSL 1.0.1g 7 Apr 2014
+
+
+https://www.openssl.org/news/secadv_20150319.txt --> list of openssl patches.
+
+To generate the self signed certificate for given server 
+
+1)openssl genrsa -out ca.key 4096
+2)openssl req -new -x509 -days 1826 -key ca.key -out ca.crt -outform crt --> to get in crt format 
+or 3) openssl req -new -x509 -days 1826 -key ca.key -out ca.pem -outform pem --> to get in pem format.
+
+For syslog servers SSL connection --> openssl s_client -host 164.99.88.104 -port 5444 -showcerts > mycert.pem  copy only the server part.
+
+openssl commands to check the certificate details.
+
+openssl s_client -connect 164.99.179.193:8030 -showcerts
+openssl x509 -text
+
+openssl pkcs12 -in mycerts.pfx  -nodes --> To check details of the certificate in PFX format.
+
+
+###############################################################################################
+
+
+
+
+
+DCLIENTDEBUG=1  ndslogin -t TEST_NICI admin.novell -p novell
+
+
+
+
+
+
+
+/tmp/revoke_server_certificate 164.99.179.122 524 admin.novell novell "CN=One - Configuration EC.CN=CRL Container.CN=Security" stdir-vm-122.novell ec_521 PKI_KEY_COMPROMISE
+
+
+
+MP3 download songs --> www.mahamp3.com/
+
+################################## Re-key eDirectory database using ndsdump ##################################
+
+Get the DSDUMP build from below link 
+http://blr-builder.labs.blr.novell.com/artifacts/dirtech-builds/public_html/publish/publish/Builds/rosalind/Rosalind_SP8x/DSDUMP/20141013/
+Password depends on build . For above build password is inanna . 
+
+On linux install the rpm 
+
+On windows , unzip dsdump and copy the dsbrowse.dlm and dsedit.dlm to c:\Novell\NDS\ while NDS server is down. 
+Start the open the database in restricted mode Windows: dhost.exe /datadir=dibpath –rdb (or /rdb)
+Now start the NDSserver and start the dsedit and do re-key the data base.
+check the link --> https://www.novell.com/support/kb/doc.php?id=7000006
+
+
+
+
+
+
+################    How to test EA.txt ####################
+ldapsearch -h 164.99.179.66 -p 636 -D cn=admin,o=novell -w n -s sub -b o=novell -e /var/opt/novell/eDirectory/data/SSCert.der cn=hhh
+sles11sp3-66:~ # ldapsearch -h 164.99.179.66 -p 389 -D cn=admin,o=novell -w n -s sub -b o=novell cn=hhh
+# search: 2
+# result: 80 Unknown error
+# textNDS error: encrypted data access denied (-6089) 
+
+openlap commands 
+
+LDAPTLS_CACERT=/var/opt/novell/eDirectory/data/SSCert.pem ldapsearch -H ldaps://164.99.179.165 -D cn=admin,o=novell -w novell cn=admin --> searching through secure port.
+ldapsearch -H ldap://164.99.179.165 -D cn=admin,o=novell -w novell cn=admin
+
+
+
+######################################  DSBK ########################################################################
+
+How to run a dsbk for taking NICI files back up . Use option -e to take nici file back up. example are 
+
+Take NICI backup with following command.
+dsbk backup -b -e novell -f /home/nici_1.back -l /home/backup.log -t -w
+Restore the NICI with following command.
+dsbk restore -r -e novell -f /home/nici_1.back -l /home/restore.log -a -o
+
+Cools solutions on DSBK --> https://www.novell.com/coolsolutions/feature/16529.html , 
+https://www.netiq.com/communities/cool-solutions/backing-and-restoring-edirectory-tree-nici-using-dsbk-linux/
+
+######################################################################################################################
+
+
+
+netstat -an | grep LISTEN | grep 8443
+
+
+Novell Client Machine : 164.99.179.98
+admin / novell@123
+
+
+
+n4u.server.fips=0
+/opt/novell/oes-install/util/getSSCert
+
+novell_scrub --> wget http://164.99.91.1/Builds/Tools/novell-scrub_15.sh
+
+
+How install the subversion on SLES11SP2 --> Download the subversion rpm form "http://kirk.provo.novell.com/dist/full/full-sle11-sp3-x86_64/suse/x86_64/" and install using rpm command. Install the required depended rpm form the same link.
+
+eDirectory lsc file path --> /opt/novell/eDirectory/lib64
+
+
+888 link -->  wget http://164.99.91.1/Builds/eDirectory/88SP8/eDirectory_88SP8_Linux_x86_64.tar.gz
+888Patch1 --> wget http://blr-builder.labs.blr.novell.com/artifacts/edir_patches/idc_n4u%23rosalind-SP8_FTF1/20140120_181441/linux/final/edir8881.tar.gz
+888Patch2 --> wget http://blr-builder.labs.blr.novell.com/artifacts/edir_patches/idc_n4u%23rosalind-SP8_FTF2/20140516_173349/linux/final/edir8882.tar.gz
+888Patch3 --> wget http://blr-builder.labs.blr.novell.com/artifacts/edir_patches/idc_n4u%23rosalind-SP8_FTF3/20140904_160452/linux/final/edir8883.tar.gz
+888Patch4(full Build) --> wget ftp://164.99.91.137/eDirectory/rosalind-SP8_FTF4_FCS/RC1/eDirectory_88SP8_Patch4_Linux_x86_64.tar.gz
+888Patch5(full Build) --> wget ftp://164.99.91.137/eDirectory/rosalind-SP8_FTF5_FCS/RC2/eDirectory_88SP8_Patch5_Linux_x86_64.tar.gz
+888Patch6(Full Build) --> wget ftp://164.99.91.137/eDirectory/rosalind-SP8_FTF6_FCS/eDirectory_88SP8_Patch6_Linux_x86_64.tar.gz
+888Patch79Full Build) --> wget ftp://164.99.91.137/eDirectory/rosalind-SP8_FTF7_FCS/eDirectory_88SP8_patch7_Linux_x86_64.tar.gz
+888Patch10 --> ftp://164.99.91.137/eDirectory/rosalind-SP8_FTF10_FCS/
+
+
+iManager 3.0 --> http://164.99.162.71:8080/job/iManager-deliver-3.0-FCS/19/
+iManager 277 --> http://164.99.162.71:8080/job/iManager-deliver-Patch5/19/
+
+
+
+
+887 patch6 --> wget http://blr-builder.labs.blr.novell.com/artifacts/edir_patches/idc_n4u%23rosalind-SP7_FTF6/20140425_201622/linux/final/
+
+Proxy_builds --> http://blr-builder.labs.blr.novell.com/artifacts/dirtech-builds/public_html/publish/publish/Builds/Ldap_Proxy/ldapproxy-orchid/
+
+
+LDAP Benchmark Tester -->https://www.novell.com/coolsolutions/tools/14046.html
+
+ldapsearch -x -H ldap://164.99.179.191 -b "ou=namma,o=test" -s sub -LLL dn -E pr=20 --> searching for 20 objects.
+
+ldapsearch with extended operations 
+
+ldapsearch -D cn=admin,o=novell -w n -M -b o=novell cn=puser2 ---> with manageDSAit control.
+ldapsearch -D cn=admin,o=novell -w n -E pr=5 --> with paged results.
+Use manjus parttion creation script to generate the 419 and 421 event
+
+
+
+Starting the redis server
+STDIR-VM:/home/redis/redis-2.8.4/src # ./redis-server ../redis.conf & --> conf file will have server ip and port number where we can bringup the server.
+
+STDIR-VM:/home/redis/redis-2.8.4/src # ./redis-cli -h 164.99.179.165 -p 9111 --> Client for accessing the radis server.
+
+
+
+
+How to install svn 
+zypper addrepo http://download.opensuse.org/repositories/devel:tools:scm:svn/SLE_11_SP3/devel:tools:scm:svn.repo
+zypper refresh
+zypper install subversion
+zypper parameter that will return packages in the channel that pertain to a specific bug number: zypper list-patches --bugzilla=864542
+
+
+
+SLES key --> 86401@BLR-EXT-SLES-73f8f17cee
+OES key --> 86401@BLR-EXT-OES2-74b979157
+Windows2008 R2 key --> VYTXT-PDBW4-TGCP8-FBVV4-QGMG3
+Windows2012 R2 key --> N3THR-KRP7T-74PJQ-Q6CRT-P7HJM
+Windows2016 --> 48VNJ-KF8FD-K7K96-QJ68D-VXPG4
+
+Linux source code --> /usr/src/linux 
+
+
+eDirectory customers 
+
+Nederlands Huisartsen Genootschap (NHG)
+ROC Friese Poort 
+RTV Noord Holland
+INTEREXPERTS
+
+
+
+LDAP search for AD 
+
+ldapsearch -x -h 164.99.179.193 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b cn=users,dc=raghu,dc=org cn=administrator
+ldapsearch -x -h 164.99.179.193:389 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b cn=users,dc=raghu,dc=org cn=administrator --> with port. by default it listens on 389,636
+ldapsearch -x -h 164.99.179.193 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b cn=users,dc=raghu,dc=org cn=*
+ldapsearch -x -h 164.99.179.193 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b dc=raghu,dc=org cn=*
+ldapsearch -x -h 164.99.179.193 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b CN=Schema,CN=Configuration,DC=raghu,DC=org --> Schema 
+ldapsearch -x -h 164.99.179.193 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b dc=raghu,dc=org -s sub objectClass=group --> listing the group
+
+
+LDAP Secure search on AD 
+
+LDAPTLS_CACERT=/home/ad_ca_cert.pem ldapsearch -x -H ldaps://ADSERVER.raghu.org -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b cn=users,dc=raghu,dc=org cn="test n"  --> use the hostname since the certificate subject name is hostname.
+
+LDAPTLS_REQCERT=never ldapsearch -x -h 164.99.179.193 -D cn=administrator,cn=users,dc=raghu,dc=org -w Novell_123 -b cn=users,dc=raghu,dc=org cn=administrator --> to set that never ask any certificate for SSL connection.
+
+
+
+ldapsearch -h 164.99.179.164 -D cn=admin,o=novell -b "" -s base -LLL | grep -i supported --> to find the supported LDAP extention operation.
+
+
+We have to set like this to listen on both ipv4 n ipv6 ldapInterfaces: ldap://[::]:389,ldaps://[::]:636
+
+Secure port searching --> ldapsearch -D cn=admin,o=novell -h 164.99.179.164 -p 636 -w n cn=admin -e SSCert.der
+
+
+
+
+
+
+/var/opt/novell/iManager/nps/WEB-INF/configiman.properties --> iManager config file where we can mention the tree name 
+
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mysitename.pem -out mysitename.pem -outform PEM --> command to generate the pem certificate. Note we have to give sentinel server name in the name .
+
+
+Configuring the auditing iManger collector.
+
+/var/opt/novell/iManager/nps/WEB-INF/imanager_logging.xml
+Enter the sentinel log server ip <param name="syslogHost" value="164.99.179.163:1468"/>
+    <param name="syslogProtocol" value="tcp"/>
+uncheck the appender-ref for syslog
+
+
+
+
+Taking ndsback through SMS.
+Load the tsands by command " smsconfig -l tsands"
+Check the tsands is loaded by checking "smsconfig -t"
+
+Create an archive file using following command
+/opt/novell/sms/bin/nbackup -cvf /root/test6.bk -F -U admin.novell -P n  --target-type="Directory" [Root]
+
+Listing the content of the backup file /opt/novell/sms/bin/nbackup -tvf /root/test6.bk
+
+Delete 10 users and Restore the all objects using the backup file.
+/opt/novell/sms/bin/nbackup -xvf /root/test6.bk  -F -U admin.novell -P n  --target-type="Directory"
+
+Taking single object backup 
+/opt/novell/sms/bin/nbackup -cvf /home/user100  -F -U admin.netiq -P n  --target-type="Directory" "cn=user100.o=netiq"
+
+-----------------------------------------------------------------------------------------------------------------
+To Simulate the network outage for a given port number.
+
+iptables -I INPUT 1 -p tcp --dport 1468 -j DROP --> To simulate a network failure, by dropping all tcp packets to and from port 1468.
+iptables -D INPUT 1 --> To delete the above rule in iptable.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+Command to list the eDirectory installed pakages in AIX : lslpp -l | grep Novell
+
+
+
+ldapsearch -x -Z -D cn=admin,o=novell -w n "(cn=user2)"  | grep -i -e "grace\|password\|nspm"
+
+NTP server config steps.
+vi /etc/ntp.conf -- enter NTP server ip in "server" paramater.
+/etc/init.d/ntp start
+chkconfig ntp on 
+ntpq -p
+
+To set server time to NTP server time --> sntp -P no -r 164.99.147.9
+
+
+
+If you must run a legacy application that installs an interactive service on
+Windows Server 2012, you may sacrifice server stability for compatibility by
+changing the following registry value from the default of "1" to "0".
+
+HKLM\SYSTEM\CurrentControlSet\Control\Windows\NoInteractiveServices  --> Enabling Interactive Services 
+
+To search in rootDSE of LDAP ---> ldapsearch -D cn=admin,o=novell -b "" -s base -w n addEntryOps
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+passstore is used to give option to execute the ndsutil without giving passwords. 
+ndspassstore is a utility used to store username and password as encrypted key value pairs in ls /var/opt/novell/nici/0/edirsec.cfg file .
+
+How to test. 
+1) ndsbackup s -a admin.novell -p n --> without passtore will see the results.
+2) create key value pair entry for admin useing this command "ndspassstore -a admin.novell -w n" 
+3) Now run "ndsbackup s -a admin.novell -p passstore" to get same out which we got from step 1.
+4) With ndspasstore we are now able to run with giving the password in plain text in command line.
+
+Same way we can do for "ndscheck -a admin.novell -W" [capital "W" indicates ndscheck to use ndsspasstore]
+We can also create entry for sadmin(this is imaginary user) using this we can login to imonitor. "ndspassstore -a sadmin -w novell" 
+
+TID about sadmin user --> https://support.novell.com/docs/Tids/Solutions/10088336.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+labstorage.lab.novell.com
+root - novell
+/data/hvaughan/imgr/276/FCS/iMan_276_win.zip                            276 FCS
+/data/hvaughan/imgr/276/2761-2/iManager276_Patch1_Windows.zip           276 P1
+/data/hvaughan/edir/887/FCS/windows/eDirectory_88SP7_Windows_x64.exe    887 FCS
+/data/hvaughan/edir/887/8873/win/edir887_patch3_win.zip                 887 P3
+(not required to dup)
+
+1. Install 276  
+2. Install 2761
+3. Install eDir - new tree and accept all defaults
+
+ 	
+
+
+
+sercing schema from ldap 
+ldapsearch -D cn=admin,o=novell -w n -b cn=schema -s base
+
+Win2012 bug for interactive session --> https://bugzilla.novell.com/show_bug.cgi?id=799865
+Win2012 key --> K3KY4-XBNRX-RVB8Y-4RWW4-F6V6W:
+
+nmap -sT 164.99.179.193 --> to check the what all ports listening. If nmap is not installed , install using "zypper in namp"
+
+Cool solution on NDS paswords --> http://www.novell.com/coolsolutions/feature/15778.html
+
+http://164.99.91.1/Builds/VMimages/ESXi-Templates/ --> Vmware templates.
+164.99.178.244 --> Vmware server.
+eDirectory builds --> http://164.99.91.1/Builds/eDirectory/88SP7/
+
+
+XDAS notes 
+
+CEE standard --> http://cee.mitre.org/language/1.0-beta1/overview.html 
+configaration of xdas file -->  /etc/opt/novell/eDirectory/conf/xdasconfig.properties
+File log for the XDAS /var/opt/novell/eDirectory/log/xdas-events.log
+
+# Defines location of Syslog server.
+log4j.appender.S.Host=164.99.179.163
+log4j.appender.S.Port=1468
+
+
+
+
+eDirectory 
+
+Imonitor link --> https://164.99.179.161:8030/nds/
+iManager link --> https://164.99.179.161:8443/nps/
+Sentinal log manger link --> https://SLES11-SP1-163.novell.com:8443
+Restarting imanager --> /etc/init.d/novell-tomcat7 restart
+ndsconfig add -t treename -n novell -a admin.novell -b 524 -L 1389 -l 1636 -o 8128 -O 8130
+
+
+
+OES patch applying steps 
+
+a.rug sa -t YUM http://liva.provo.novell.com/download/i386/update/Open-Enterprise-Server/2-SP1/ liva-OES2-Updates
+b.rug sub liva-OES2-Updates
+c.rug patches 
+
+
+On OES2 SPx:
+rug sa -t YUM http://137.65.244.112/download/x86_64/update/Open-Enterprise-Server/2-SP3/ eDirPatch
+rug sub eDirPatch
+rug patches
+rug in -t patch oes2sp1-edirectory-885-6195-0
+On OES11 SPx
+
+zypper addrepo http://qa-patches.blr.novell.com/download/x86_64/update/Open-Enterprise-Server/11-SP1/ eDirPatch
+zypper patches
+Before applying check all "Needed" patches are applied 
+zypper in -t patch oes11sp1-edirectory-887-patch4-7886 or we can use the "zypper up " to update all the patches.
+
+
+
+Keytool loation --> /opt/novell/jdk1.7.0_04/jre/bin
+
+setting LDAP for the non-secure --> ldapconfig -s "Require TLS for Simple Binds with Password=no"
+ldapconfig set "LDAP Screen Level=all"
+LDAP setting --> ldapconfig -V -a admin.org -w Novell_123
+
+LDAP search --> ldapsearch -D cn=admin,o=org -w Novell_123 cn=* dn
+
+PATH=/opt/novell/eDirectory/bin:/opt/novell/eDirectory/sbin:$PATH
+LD_LIBRARY_PATH=/opt/novell/eDirectory/lib:/opt/novell/eDirectory/lib/nds-modules:/opt/novell/lib:$LD_LIBRARY_PATH
+MANPATH=/opt/novell/man:/opt/novell/eDirectory/man:$MANPATH
+TEXTDOMAINDIR=/opt/novell/eDirectory/share/locale
+
+
+1. ldapsearh for schema file:
+ldapsearch -D cn=admin,o=novell -w n -b cn=schema  -s base objectclass=* > sch.txt
+
+2. ldapsearch for no: of objects:
+ldapsearch -p 389 -D cn=admin,o=novell -w novell -b ou=ou1,ou=blr,o=novell -s base objectclass=* +
+
+3. ldapsearch for no: of objects:
+ldapsearch -p 389 -D cn=admin,o=novell -w novell -b ou=ou1,ou=blr,o=novell -s base objectclass=* subordinatecount
+
+4. RootDse Serach
+ldapsearch -D cn=admin,o=novell -w password -b "" -s base
+
+5. Ldapsearch for operational attributes.
+ldapsearch -h 10.10.1.1 -b o=novell objectclass=inetorgperson +
+ 		or 
+specify the operational attribute you are looking for
+ldapsearch -h 10.10.1.1uid=<username> -x createtimestamp, modifytimestamp
+
+
+ldapcompare -h 164.99.91.62 -D cn=admin,o=novell -w n  cn=admin,o=novell sn:admin -x TRUE
+
+
+
+
+
+
+Certificate importing to the tree
+
+cd /home/builds/eDirectory/nmas/NmasMethods/Novell/GSSAPI/Kerberos_ldap_extensions/
+Config the kerbores extention first --> execute the ./krbLdapConfig -i -D cn=admin,o=org -h 164.99.179.161 -p 389 -w Novell_123
+cd  /opt/novell/jdk1.7.0_04/jre/bin/
+./keytool -import -alias cert -file /var/opt/novell/eDirectory/data/SSCert.der -keystore ../lib/security/cacerts
+
+rcndsd restart
+iManager restart --> /etc/init.d/novell-tomcat7 restart
+
+
+ndsconfig new -t NON-DEFAULT -n raghu -a raghu.raghu -w raghu -S SOME_NON_SERV_IP6 -e -D /home/IPV6/ -d /home/IPV6/data/dib -B [4015::1]@524 -L 8389 -l 8636 -o 9010 -O 9011 --config-file /home/IPV6/nds.conf
+
+
+
+Cleaning up the eDirectory manually 
+
+ pkill -9 ndsd
+
+RH6 
+rm /etc/opt/novell/eDirectory/conf/nds.conf 
+rm /etc/opt/novell/eDirectory/conf/.edir/instances.0 
+rm -rf /var/opt/novell/eDirectory/data/
+
+
+
+IPV6 commonds 
+
+ip -6 addr show
+ip -6 addr add 4015::7/64 dev eth0
+ip -6 addr del 4015::7 dev eth0
+ping6 4015::7
+
+
+slptool findsrvs service:ndap.novell --> finding the SLP service registerd.
+
+
+IPV6 error 
+
+
+
+
+
+ndsconfig failing to configure second tree on server where NIC is configued with both IPv4 and IPv6 address.
+
+
+Steps reproduce : 
+Install eDirectory on server where the NIC card is configured with both IPV4 and IPV6 address.
+Configure new eDirectory with IPv4(or IPv6) address. 
+Configure one more new eDirectory with IPV6 (or IPV4)address. 
+Configuration will fail with fallowing error.
+
+SLES11-SP1-165:~ # netstat -lntp | grep -i 389
+tcp        0      0 :::389                  :::*                    LISTEN      15270/ndsd          
+SLES11-SP1-165:~ # netstat -lntp | grep -i 524
+tcp        0      0 164.99.179.165:524      0.0.0.0:*               LISTEN      15270/ndsd          
+tcp        0      0 127.0.0.1:524           0.0.0.0:*               LISTEN      15270/ndsd          
+tcp        0      0 4015::2:524             :::*                    LISTEN      15270/ndsd          
+tcp        0      0 ::1:524                 :::*                    LISTEN      15270/ndsd  
+
+fuser 524/tcp                to match PID to socket 
+ps -eaf | grep PID#       then to get full path of service
+or
+netstat -nlp | grep 524  to just quickly get daemon name
+
+event listing --> /opt/novell/eDirectory/lib64/edir_en.lsc 
+
+TID for the malloc_check = http://www.novell.com/support/kb/doc.php?id=3113982
+
+
+
+
+Note: This solution is for testers. It works in an environment with Windows 2003, eDirectory 8.8 or later, and any version of NICI.
+
+1. Uninstall NICI from Control panel add/remove programs.
+
+2. Go to C:\WINDOWS\system32\Novell\NICI. Note that you cannot remove the system folder that has the keys.
+
+3. Go to Properties of the system folder.
+
+4. Click Security and then OK.
+
+5. Choose Advanced > Owner > Administrator.
+
+6. Select "Replace owner on subcontainer and objects" option and click Apply. Now you have the correct permissions on the system folder.
+
+7. Remove the entire NICI folder.
+
+
+notes on XDASv2
+
+Don’t Log Large Values: Select this option to log events that are less than 768 Byte in size. If the
+event size is more, the event value is truncated and saved to the log file. --> Check maadala , in doc they are saying it is truncated and stored but in real it is not storing.
+
+
+################## rpm handy commands ##########################
+
+
+rpm -qi novell-AUDTedirinst-8.8.7.5-35 --> to find the info on the rpm
+rpm -qf /opt/novell/lib/libtsands.so --> command to find the from where this library came.
+novell-edirectory-tsands-32bit-8.8.8.1-0.21.1
+rpm -ql novell-NLDAPsdk-8.8.8.5-0 --> to list the files of installed rpm 
+rpm -qlp novell-NLDAPsdk-8.8.8.5-0.x86_64.rpm --> to list the installabel files in rpm.
+
+
+
+SLES11-SP2-163:/home # cat /etc/novell-release 
+Novell Open Enterprise Server 11 (x86_64)
+VERSION = 11.1
+PATCHLEVEL = 1
+
+
+Build Loaction of EAS server(we have to install fom the IDM build). EAS is part of the IDM server : http://blr-builder.labs.blr.novell.com/artifacts/IDM_4.5/Advanced/104/
+
+mount -o loop /home/Identity_Manager_4.0.1_Linux_Advanced.iso /mnt/
+mount -o loop /home/Identity_Manager_4.0.2_Linux_Advanced.iso /mnt/
+
+
+
+
+cat patt.txt | tr  '[:lower:]' '[:upper:]' > PATT.TXT  --> to make all capital
+
+
+
+>From Imonitor my users network address was..
+
+
+TimeStamp                                     Flags       Type         Length           Address
+01/25/14 07:15:07 PM 1:7 	Present 	TCP 	6 	10.0.0.110:0 
+
+My ldap search that got it....
+
+ldapsearch -x -h 10.0.0.2 -D cn=admin,o=lab -w admin -b ou=users,o=lab -s one "(networkAddress=9#\00\00\0A\00\00\6E)" -A dn
+
+SLES11-SP3-164:~ # ldapcompare -h 164.99.179.191 -p 389 -D cn=admin,o=novell -w n "cn=user1,ou=namma,o=test"  sn:user12
+FALSE
+SLES11-SP3-164:~ # ldapcompare -h 164.99.179.191 -p 389 -D cn=admin,o=novell -w n "cn=user1,ou=namma,o=test"  sn:user1
+TRUE
+
+Changing the user password using ldapmodify. Use below sample ldif file to do .
+ldapmodify -h 164.99.179.164 -p 389 -D cn=admin,o=novell -w n -f user-mod.ldif
+
+Change password by ldif file 
+
+dn: cn=rag11,o=novell
+changetype: modify
+replace: userPassword
+userPassword: novell123
+
+
+
+
+SENTINEL related links 
+
+ftp://archive.esecurity.net/sentinel/sentinel/7.1.1.2/ ---> Sentinel builds 
+http://164.99.19.56:8081/view/Sentinel%20Orange%20Zone/job/sentinel_trunk/  --> jenkins links for sentinel builds.
+http://support.novell.com/products/sentinel/secure/sentinelplugins.html --> sentinel 
+
+Sentinel server logfile --> /var/opt/novell/sentinel/log/server0.0.log
+Sentinel server certificates patch ---> /etc/opt/novell/sentinel/config 
+
+
+
+
+
+eDirectory Object ACL and Class Analysis
+https://www.netiq.com/communities/cool-solutions/cool_tools/edirectory-object-acl-and-class-analysis/
+ 
+ 
+And this one Jim Schnitter wrote:-
+ 
+ACL Reset
+http://www.novell.com/coolsolutions/tools/14136.html
+
+
+
+-----------------------------------------------------------------------------------------------------
+#!/bin/bash
+# Simple CPU stress test script
+
+# Read the user's input
+echo -n "Number of CPU threads to test: "
+read cpu_threads
+echo -n "Duration of the test (in seconds): "
+read cpu_time
+
+# Run an endless loop on each thread to generate 100% CPU
+echo -e "\E[32mStressing ${cpu_threads} threads for ${cpu_time} seconds...\E[37m"
+for i in $(seq ${cpu_threads}); do
+    let thread=${i}-1
+    (taskset -cp ${thread} $BASHPID; while true; do true; done) &
+done
+
+# Once the time runs out, kill all of the loops
+sleep ${cpu_time}
+echo -e "\E[32mStressing complete.\E[37m"
+kill 0
+----------------------------------------------------------------------------------------------------------
+
+How to run the Nessus scan for LDAP proxy server 
+
+Login to the Nessus server https://164.99.175.30:8834/html5.html#/scans --> with login cretdentials [ediruser/edir1234]
+
+Click on the New Sacn --> Give name for the scan , Select the policy needed to be run(example edir_policy) and in Targets field give IP address of the proxy server.
+
+Check the report once the scan is run on the server.
+
+
+
+iManager Collector 
+
+for setting the XDAS logging : /var/opt/novell/iManager/nps/WEB-INF/imanager_logging.xml
+
+
+
+Workaround to configuring mulptiple instance in OES
+
+    The test was trying to configure multiple instance on OES using -x option. For a recent fix for Bug#828370, we have put startproc for ndsd binary on OES systems as we don't expect multiple instances to be running on OES systems. Once startproc is removed from the ndsd script the test can be run.
+
+
+############## SuiteB Commands ############################
+
+LDAPTLS_CACERT=cacert.pem LDAPTLS_CERT=user1cert.pem LDAPTLS_KEY=user1key.pem ldapsearch -Y  EXTERNAL -H ldaps://164.99.179.164 -b "" -s base -LLL dn
+
+LDAPTLS_CIPHER_SUITE=ECDHE-ECDSA-AES128-GCM-SHA256 LDAPTLS_REQCERT=never LDAPTLS_CERT=/tmp/admincert.pem LDAPTLS_KEY=/tmp/adminkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.193 -b "" -s base -LLL dn
+LDAPTLS_CIPHER_SUITE=ECDHE-ECDSA-AES128-SHA LDAPTLS_REQCERT=never LDAPTLS_CERT=/tmp/admincert.pem LDAPTLS_KEY=/tmp/adminkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.193 -b "" -s base -LLL dn
+LDAPTLS_CIPHER_SUITE="ECDHE-ECDSA-AES128-SHA:TLSv1" LDAPTLS_REQCERT=never LDAPTLS_CERT=/tmp/admincert.pem LDAPTLS_KEY=/tmp/adminkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.193 -b "" -s base -LLL dn
+LDAPTLS_CIPHER_SUITE="ECDHE-ECDSA-AES128-SHA:SSLv3" LDAPTLS_REQCERT=never LDAPTLS_CERT=/tmp/admincert.pem LDAPTLS_KEY=/tmp/adminkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.193 -b "" -s base -LLL dn
+LDAPTLS_CIPHER_SUITE='ECDHE-ECDSA-AES128-SHA:SSLv3:!TLSv1.2' LDAPTLS_REQCERT=never LDAPTLS_CERT=/tmp/admincert.pem LDAPTLS_KEY=/tmp/adminkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.193 -b "" -s base -LLL dn
+
+openssl s_client -state -connect 164.99.179.193:636 -cert admincert.pem -key adminkey.pem --> to test user certificate are running 
+LDAPTLS_CACERT=cacert.pem LDAPTLS_CERT=admincert.pem LDAPTLS_KEY=adminkey.pem ldapsearch -Y EXTERNAL -H ldaps://164.99.179.193 -b "" -s base -LLL dn 
+
+
+
+
+Windows eDirectory log location
+C:\Program Files\Common Files\Novell\ni\data --> 
+C:\Novell\NDS\DIBFiles\CertServ --> PKIhealth and PKIserver.
+
+
+
+SDIDIAG how to do ? Link https://www.novell.com/support/kb/doc.php?id=3840110
+
+Install the rpm "sdidiag.x86_64.rpm" and go to /opt/novell/sdidiag/bin64
+
+/opt/novell/sdidiag/bin64 # ./sdidiag64
+
+
+
+
+
+
+
+
+
+
+
+http://ecourts.gov.in/services/cases/o_civil_case_history.php?case_no=206300001132012&frmAction=modify&dist_code=21&court_code=1&state_code=3 --> Anna
+http://ecourts.gov.in/services/cases/ki_petres.php?state=D&state_cd=3&dist_cd=18# --> case status
+
+C.C./264/2013	NEPS.Tumkur
+Versus
+R.Raghu
+
+
+
+1 x Rs5,000 flipkart.com Code/Link - 6000170015379820 PIN: 480563 (Exp.Date: 25/Aug/2015) 5000 - 1611 =   3389 -545 =  2844 - 2384 = 460 --> Done and Thanks.
+
+
+Dear Raghu Rayanna,
+
+Your recent Webshop order for e-vouchers (order number 2632817-3247246-2168530), is listed below.
+
+Order Details: 
+
+
+1 x                Rs500 jpearls Code/Link - 9D29B (Exp.Date: 17/Nov/2015)
+1 x                Rs500 jpearls Code/Link - 1CEA3 (Exp.Date: 17/Nov/2015)
+1 x                Rs500 jpearls Code/Link - 69B43 (Exp.Date: 17/Nov/2015)
+1 x                Rs500 jpearls Code/Link - F86A4 (Exp.Date: 17/Nov/2015)
+
+
+
+
+https://attachmate.ovationencore.com/Index#
+
+
+
+
+vi /etc/exports /home ip(rw)
+zypper in nfs-kernel-server
+/etc/init.d/nfsserver restart
+
+
+to mount an iso file
+create a folder sle12
+ mount -o loop eDirectory_88SP8_Patch4_SLES12_RHEL7.iso /home/sle12
+
+To mount a folder of remote box NFS server should be running on tha machine and shoud give permissions to remote machines to mount.
+
+/etc/init.d/nfsserver status
+
+/etc/init.d/nfsserver start
+
+vi /etc/exports
+
+add folders that tobe shared and remote machine ip like 
+
+/home/ 164.99.179.66(rw,no_root_squash)
+
+for more information check man exports
+exportfs -a
+
+
+Amma Bank : Ninasam_123 and Novell_123
